@@ -33,7 +33,9 @@ const {
 // < 16
 
 function exponencial(exp) {
-
+    return function(base){
+        return Math.pow(base, exp);
+    }
 }
 
 // ----- Recursión -----
@@ -70,9 +72,15 @@ function exponencial(exp) {
 // Aclaraciones: el segundo parametro que recibe la funcion ('direccion') puede ser pasado vacio (null)
 
 function direcciones(laberinto) {
-
+    let camino = '';
+    for(key in laberinto){
+        if(typeof(laberinto[key]) === 'object'){
+            camino = camino.concat(key).concat(direcciones(laberinto[key]));
+        }
+        if(laberinto[key] === 'destino') return camino.concat(key)
+    }
+    return camino;
 }
-
 
 // EJERCICIO 3
 // Crea la funcion 'deepEqualArrays':
@@ -88,7 +96,7 @@ function direcciones(laberinto) {
 // deepEqualArrays([0,1,[[0,1,2],1,2]], [0,1,[[0,1,2],1,2]]) => true
 
 function deepEqualArrays(arr1, arr2) {
-
+    
 }
 
 
